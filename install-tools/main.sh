@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Ganti URL GitHub kamu jika file tidak berada di folder 'install-tools'
-REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main/install-tools"
+# URL GitHub tempat semua file skrip disimpan (di root repo)
+REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main"
 
 while true; do
   clear
@@ -19,24 +19,12 @@ while true; do
   read -p "Masukkan pilihan [1-7]: " pilihan
 
   case $pilihan in
-    1)
-      FILE="enablehtaccess.sh"
-      ;;
-    2)
-      FILE="ganti-port.sh"
-      ;;
-    3)
-      FILE="ioncube.sh"
-      ;;
-    4)
-      FILE="kernel.sh"
-      ;;
-    5)
-      FILE="swap-dan-asterisk.sh"
-      ;;
-    6)
-      FILE="vpn-vps.sh"
-      ;;
+    1) FILE="enablehtaccess.sh" ;;
+    2) FILE="ganti-port.sh" ;;
+    3) FILE="ioncube.sh" ;;
+    4) FILE="kernel.sh" ;;
+    5) FILE="swap-dan-asterisk.sh" ;;
+    6) FILE="vpn-vps.sh" ;;
     7)
       echo "Keluar dari installer."
       exit 0
@@ -48,14 +36,14 @@ while true; do
       ;;
   esac
 
-  # Download dan jalankan skrip
   echo "📥 Mengunduh skrip: $FILE ..."
-  curl -sO "$REPO_URL/$FILE"
+  curl -fsSLO "$REPO_URL/$FILE"
+
   if [[ -f "$FILE" ]]; then
     chmod +x "$FILE"
-    echo "🚀 Menjalankan skrip..."
+    echo "🚀 Menjalankan skrip $FILE..."
     ./"$FILE"
-    rm "$FILE"  # Hapus file setelah dijalankan
+    rm "$FILE"
   else
     echo "❌ Gagal mengunduh skrip dari $REPO_URL/$FILE"
   fi
