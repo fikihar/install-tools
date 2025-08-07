@@ -11,7 +11,7 @@ while true; do
   echo "1. Enable .htaccess"
   echo "2. Ganti Port Apache"
   echo "3. Install Ioncube Loader"
-  echo "4. Ganti Kernel (Generic)"
+  echo "4. Ganti Kernel Generic"
   echo "5. Install Swap dan Asterisk"
   echo "6. Setup VPN di VPS"
   echo "7. Keluar"
