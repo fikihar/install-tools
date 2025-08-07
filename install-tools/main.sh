@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # URL GitHub tempat semua file skrip disimpan (di root repo)
-REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main"
+REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main/install-tools"
 
 while true; do
   clear
