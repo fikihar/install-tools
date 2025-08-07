@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# URL GitHub kamu
-REPO_URL="REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main/install-tools"
+# Ganti URL GitHub kamu jika file tidak berada di folder 'install-tools'
+REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main/install-tools"
 
 while true; do
   clear
@@ -11,7 +11,7 @@ while true; do
   echo "1. Enable .htaccess"
   echo "2. Ganti Port Apache"
   echo "3. Install Ioncube Loader"
-  echo "4. Ganti Kernel Generic"
+  echo "4. Ganti Kernel (Generic)"
   echo "5. Install Swap dan Asterisk"
   echo "6. Setup VPN di VPS"
   echo "7. Keluar"
@@ -20,22 +20,22 @@ while true; do
 
   case $pilihan in
     1)
-      curl -sO $REPO_URL/enablehtaccess.sh && chmod +x enablehtaccess.sh && ./enablehtaccess.sh
+      FILE="enablehtaccess.sh"
       ;;
     2)
-      curl -sO $REPO_URL/ganti-port.sh && chmod +x ganti-port.sh && ./ganti-port.sh
+      FILE="ganti-port.sh"
       ;;
     3)
-      curl -sO $REPO_URL/ioncube.sh && chmod +x ioncube.sh && ./ioncube.sh
+      FILE="ioncube.sh"
       ;;
     4)
-      curl -sO $REPO_URL/kernel.sh && chmod +x kernel.sh && ./kernel.sh
+      FILE="kernel.sh"
       ;;
     5)
-      curl -sO "$REPO_URL/swap-dan-asterisk.sh" && chmod +x swap-dan-asterisk.sh && ./swap-dan-asterisk.sh
+      FILE="swap-dan-asterisk.sh"
       ;;
     6)
-      curl -sO $REPO_URL/vpn-vps.sh && chmod +x vpn-vps.sh && ./vpn-vps.sh
+      FILE="vpn-vps.sh"
       ;;
     7)
       echo "Keluar dari installer."
@@ -43,8 +43,22 @@ while true; do
       ;;
     *)
       echo "❌ Pilihan tidak valid. Silakan masukkan angka 1 sampai 7."
+      read -p "Tekan Enter untuk kembali ke menu..."
+      continue
       ;;
   esac
+
+  # Download dan jalankan skrip
+  echo "📥 Mengunduh skrip: $FILE ..."
+  curl -sO "$REPO_URL/$FILE"
+  if [[ -f "$FILE" ]]; then
+    chmod +x "$FILE"
+    echo "🚀 Menjalankan skrip..."
+    ./"$FILE"
+    rm "$FILE"  # Hapus file setelah dijalankan
+  else
+    echo "❌ Gagal mengunduh skrip dari $REPO_URL/$FILE"
+  fi
 
   echo
   read -p "Tekan Enter untuk kembali ke menu..."
