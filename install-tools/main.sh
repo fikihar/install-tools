@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # URL GitHub kamu
-REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main"
+REPO_URL="REPO_URL="https://raw.githubusercontent.com/fikihar/install-tools/main"
 
 while true; do
   clear
